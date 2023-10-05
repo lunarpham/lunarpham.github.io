@@ -19,7 +19,7 @@
     }
 
     .bgimg {
-      background-image: url('https://unsplash.com/photos/a-person-standing-in-the-middle-of-a-forest-Vn76uQLXZJE');
+      background-image: url('https://images.unsplash.com/photo-1694845482666-7bf0c05d40ac?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2670&q=80');
       min-height: 100%;
       background-position: center;
       background-size: cover;
@@ -28,14 +28,26 @@
 </head>
 
 <body>
-  <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
-    <div class="w3-display-topleft w3-padding-large w3-xlarge">
-      Logo
-    </div>
-    <div class="w3-display-middle">
-      <h1 class="w3-jumbo w3-animate-top">COMING SOON</h1>\
-      <hr class="w3-border-grey" style="margin:auto;width:40%">
-    </div>
+  <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
+    <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
   </div>
+  <!-- banner -->
+  <section
+    class="min-h-screen w-full flex flex-col justify-center items-center bg-[url('/banner.avif')] bg-cover bg-center">
+    <div class="w-full lg:w-[80%] p-12 text-gray-800">
+      <h1 class="text-6xl font-bold mb-10 grid grid-col-1 lg:gap-5">
+        <span>Hi, my name is <span class="text-sky-900">Chingchong</span></span>
+        <span class="text-gray-800">I'm the Copy-Paste Developer.</span>
+      </h1>
+
+      <a href="#about-me" class="uppercase border-2 border-sky-900 p-3 rounded-lg hover:bg-sky-900 hover:text-white transition-colors cursor-pointer">
+        <span class="text-xl pl-8 pr-8 pt-3 pb-3 font-light focus:outline-none focus:ring focus:ring-teal-300">Know more</span>
+      </a>
+    </div>
+  </section>
+  <!-- banner ./ -->  
+
+
+  <script type="module" src="/src/scripts/application.js"></script>
 </body>
 </html>
