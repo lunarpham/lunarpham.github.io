@@ -1,4 +1,4 @@
----
+`---
 title: "How to Set Up a Blog"
 datetime: "2024-12-24"
 thumbnail: "https://i.imgur.com/u7zVX7a.jpeg"
