@@ -1,4 +1,5 @@
 import { marked } from 'https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js';
+import { renderError } from '../errorHandler.js';
 
 export async function fetchPostContent(file) {
     try {
@@ -42,7 +43,6 @@ export function renderPostContent(title, datetime, markdownContent) {
     const contentElement = document.getElementById('content');
 
     try {
-        // Configure marked options if needed
         marked.use({
             breaks: true,
             gfm: true
@@ -64,26 +64,16 @@ export function renderPostContent(title, datetime, markdownContent) {
         `;
         contentElement.innerHTML = postHTML;
 
-        // Highlight any code blocks
         if (typeof hljs !== 'undefined') {
             hljs.highlightAll();
         }
     } catch (error) {
         console.error('Error rendering post content:', error);
-        contentElement.innerHTML = `
-            <div class="container mx-auto md:px-56">
-                <article class="post-detail error">
-                    <h1>${title}</h1>
-                    <p><strong>Date:</strong> ${datetime}</p>
-                    <div class="error-message">
-                        <p>Error rendering content: ${error.message}</p>
-                    </div>
-                    <pre>${markdownContent}</pre>
-                    <div class="w-full flex items-center justify-center my-6 border-t-2 border-black/25">
-                        <a href="/" class="back-link mt-2 font-bold text-sm uppercase opacity-75 hover:opacity-100 hover:underline">← Back to all posts</a>
-                    </div>
-                </article>
-            </div>
-        `;
+        renderError(contentElement, {
+            title,
+            datetime,
+            showDate: true,
+            message: `Error rendering content: ${error.message}`
+        });
     }
 }
