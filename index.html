@@ -3,19 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Blog</title>
+    <title>Lunar Blog</title>
     <!-- External Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/e2653b8883.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js" type="module"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
     <!-- Custom Styles -->
+    <link rel="stylesheet" href="global.css">
 </head>
 <body>
-<div class="container">
-    <header id="header"></header>
-    <nav id="navbar"></nav>
-    <main id="content"></main>
-</div>
+    <div>
+        <header id="header" class="mt-4 border-b-2 border-black/25"></header>
+        <nav id="navbar" class="flex justify-center bg-cyan-700 text-white"></nav>
+        <main id="content"></main>
+        <footer id="footer" class="w-full mt-6 py-6 bg-cyan-700 text-white"></footer>
+    </div>
 
 <script type="module">
     import { initBlog } from './init.js';

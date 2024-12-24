@@ -49,12 +49,18 @@ export function renderPostContent(title, datetime, markdownContent) {
         });
 
         const postHTML = `
-            <article class="post-detail">
-                <h1>${title}</h1>
-                <p><strong>Date:</strong> ${datetime}</p>
-                <section>${marked.parse(markdownContent)}</section>
-                <a href="/" class="back-link">← Back to all posts</a>
-            </article>
+            <div class="container mx-auto md:px-56">
+                <article class="post-detail mt-4">
+                    <div class="border-b-2 border-black/25">
+                        <h1 class="text-4xl font-bold">${title}</h1>
+                        <p class="text-sm my-2">Posted on <strong>${datetime}</strong></p>
+                    </div>
+                    <section class="prose prose-invert my-4">${marked.parse(markdownContent)}</section>
+                    <div class="w-full flex items-center justify-center my-6 border-t-2 border-black/25">
+                        <a href="/" class="back-link mt-2 font-bold text-sm uppercase opacity-75 hover:opacity-100 hover:underline">← Back to all posts</a>
+                    </div>
+                </article>
+            </div>    
         `;
         contentElement.innerHTML = postHTML;
 
@@ -65,15 +71,19 @@ export function renderPostContent(title, datetime, markdownContent) {
     } catch (error) {
         console.error('Error rendering post content:', error);
         contentElement.innerHTML = `
-            <article class="post-detail error">
-                <h1>${title}</h1>
-                <p><strong>Date:</strong> ${datetime}</p>
-                <div class="error-message">
-                    <p>Error rendering content: ${error.message}</p>
-                </div>
-                <pre>${markdownContent}</pre>
-                <a href="/" class="back-link">← Back to all posts</a>
-            </article>
+            <div class="container mx-auto md:px-56">
+                <article class="post-detail error">
+                    <h1>${title}</h1>
+                    <p><strong>Date:</strong> ${datetime}</p>
+                    <div class="error-message">
+                        <p>Error rendering content: ${error.message}</p>
+                    </div>
+                    <pre>${markdownContent}</pre>
+                    <div class="w-full flex items-center justify-center my-6 border-t-2 border-black/25">
+                        <a href="/" class="back-link mt-2 font-bold text-sm uppercase opacity-75 hover:opacity-100 hover:underline">← Back to all posts</a>
+                    </div>
+                </article>
+            </div>
         `;
     }
 }

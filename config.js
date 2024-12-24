@@ -1,17 +1,17 @@
 export const config = {
-    title: "My Developer Blog",
+    title: "Lunar Blog",
     author: {
-        name: "Lunar",
-        avatar: "/public/avatar256.jpg",
-        bio: "Software developer passionate about web technologies",
+        name: "Duy Trưởng Phạm",
+        username: "@lunarpham",
+        avatar: "/public/avatar256.png",
+        occupation: "VN-UK Institute for Research and Executive Education, The University of Danang",
+        location: "Da Nang, Vietnam",
+        bio: "3rd-year CSE student, AML enjoyer, low-tier manga scanlator",
         social: {
             github: "lunarpham",
-            twitter: "lunarruuna"
+            twitter: "lunarruuna",
+            facebook: "lunarairisu",
+            email: "lunar@gmail.com",
         }
-    },
-    navigation: {
-        home: "/",
-        about: "/about",
-        projects: "/projects"
     }
 };

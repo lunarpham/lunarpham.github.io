@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    font-family: "Noto Serif", system-ui;
+    font-optical-sizing: auto;
+    font-style: normal;
+    line-height: 1.5;
+    font-size: large;
+
+    color-scheme: light dark;
+    color: #171717;
+    background-color: #f6f4ec;
+}
+
+body {
+    min-height: 100vh;
+}
+

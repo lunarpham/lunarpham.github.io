@@ -1,12 +1,14 @@
 import { renderHeader } from './scripts/header.js';
+import { renderFooter } from "./scripts/footer.js";
 import { websiteMapNav } from './scripts/navbar.js';
 import { fetchPosts, renderPostList } from './scripts/postlist.js';
 import { fetchPostContent, renderPostContent } from './scripts/article.js';
 
 export async function initBlog() {
     try {
-        renderHeader();
         websiteMapNav();
+        renderHeader();
+        renderFooter();
 
         const contentElement = document.getElementById('content');
         if (!contentElement) {

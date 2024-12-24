@@ -1,23 +1,9 @@
 [
   {
-    "file": "2024-12-22-my-reaction-to-next-season-anime-titles",
-    "title": "Next season anime will be lit!",
-    "datetime": "2024-12-25",
-    "thumbnail": "https://i.imgur.com/ereERid.png",
-    "summary": "At least, I can say that."
-  },
-  {
-    "file": "2024-12-23-hello-world",
-    "title": "Advanced JavaScript Tips",
-    "datetime": "2024-12-25",
-    "thumbnail": "https://i.imgur.com/ereERid.png",
-    "summary": "Explore advanced JavaScript techniques to optimize your code and improve performance."
-  },
-  {
-    "file": "2024-12-23-introduction-to-my-blog",
-    "title": "How to Set Up a Blog",
-    "datetime": "2024-12-24",
-    "thumbnail": "https://i.imgur.com/u7zVX7a.jpeg",
-    "summary": "Learn how to set up a developer blog using Markdown, JavaScript, and a simple backend."
+    "file": "2023-03-29-how-to-download-raw-images-on-bookwalker",
+    "title": "How to download raw images from Bookwalker JP",
+    "datetime": "2023-03-29",
+    "thumbnail": "https://i.imgur.com/jll4YRC.jpeg",
+    "summary": "An alternative way to download purchased raws from Bookwalker JP. Works all the time!"
   }
 ]
