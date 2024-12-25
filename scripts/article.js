@@ -49,7 +49,7 @@ export function renderPostContent(title, datetime, markdownContent) {
         });
 
         const postHTML = `
-            <div class="container mx-auto md:px-56">
+            <div class="container mx-auto px-4 lg:px-56">
                 <article class="post-detail mt-4">
                     <div class="border-b-2 border-black/25">
                         <h1 class="text-4xl font-bold">${title}</h1>

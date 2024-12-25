@@ -24,17 +24,17 @@ const navlinks = [
 export function websiteMapNav() {
     const navigator = document.getElementById('navbar');
     navigator.innerHTML=`
-            <div class="container mx-auto md:block md:w-auto" id="navbar-default">
-                <ul class="font-bold text-sm uppercase flex gap-8">
+            <div class="container" id="navbar-default">
+                <ul class="font-bold text-sm uppercase flex justify-center items-center gap-24 lg:gap-8 w-full px-4 lg:px-56">
                     ${navlinks.map(link => `
                         <li>
                             <a href="${link.redirectTo}"
                                class="block py-2 opacity-75 hover:opacity-100 hover:underline">
                                 <div class="flex flex-row items-center gap-2">
-                                    <div class="md:basis-1/8">
+                                    <div class="lg:basis-1/8">
                                         <i class="fa-solid ${link.icon}"></i>
                                     </div>
-                                    <div class="md:basis-7/8">
+                                    <div class="hidden lg:block lg:basis-7/8">
                                         <div>${link.label}</div>
                                     </div>
                                 </div>

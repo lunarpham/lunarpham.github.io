@@ -13,6 +13,7 @@
     color-scheme: light dark;
     color: #171717;
     background-color: #f6f4ec;
+    overflow-x: hidden;
 }
 
 body {
