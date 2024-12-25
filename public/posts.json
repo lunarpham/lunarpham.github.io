@@ -1,5 +1,12 @@
 [
   {
+    "file": "2024-07-23-new-esrgan-model-for-grayscale-manga-upscaling",
+    "title": "New ESRGAN model for grayscale manga upscaling",
+    "datetime": "2024-07-23",
+    "thumbnail": "https://i.imgur.com/hIfdgyn.png",
+    "summary": "A customized ESRGAN model trained with my own dataset. It works perfectly for 1200px-height grayscale images."
+  },
+  {
     "file": "2023-03-29-how-to-download-raw-images-on-bookwalker",
     "title": "How to download raw images from Bookwalker JP",
     "datetime": "2023-03-29",
