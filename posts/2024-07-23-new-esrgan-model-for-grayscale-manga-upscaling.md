@@ -38,4 +38,4 @@ Image sources: Selected from 4 manga series, which are _The Ancient Magus' Bride
 \
 \
 Download link for the model:
-https://drive.google.com/drive/u/1/folders/1dEhPIBBLVzZ_CmjKrgMJGWGXC8hhFUvT
+**[CLICK HERE](https://drive.google.com/drive/u/1/folders/1dEhPIBBLVzZ_CmjKrgMJGWGXC8hhFUvT)**
