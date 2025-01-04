@@ -1,5 +1,6 @@
 import { marked } from 'https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js';
 import { renderError } from '../errorHandler.js';
+import { config } from '../config.js';
 
 export async function fetchPostContent(file) {
     try {
@@ -49,17 +50,22 @@ export function renderPostContent(title, datetime, markdownContent) {
         });
 
         const postHTML = `
-            <div class="container mx-auto px-4 lg:px-56">
-                <article class="post-detail mt-4">
-                    <div class="border-b-2 border-black/25">
-                        <h1 class="text-4xl font-bold">${title}</h1>
-                        <p class="text-sm my-2">Posted on <strong>${datetime}</strong></p>
+            <div class="container mx-auto px-4 lg:px-64">
+                <article class="post-detail mt-8 p-8 border bg-white">
+                    <div class="flex flex-row gap-2 items-center mb-4">
+                        <div>
+                            <img src="${config.author.avatar}" alt="${config.author.nickname}" class="profile-image h-8 rounded-full bg-white">
+                        </div>
+                        <div>
+                            <div class="text-sm"><strong>${config.author.nickname}</strong><span class="opacity-75"> · </span><span class="opacity-100">${datetime}</span></div>
+                        </div>
                     </div>
-                    <section class="prose prose-invert my-4">${marked.parse(markdownContent)}</section>
-                    <div class="w-full flex items-center justify-center my-6 border-t-2 border-black/25">
-                        <a href="/" class="back-link mt-2 font-bold text-sm uppercase opacity-75 hover:opacity-100 hover:underline">← Back to all posts</a>
-                    </div>
+                    <h1 class="text-4xl font-bold">${title}</h1>
+                    <section class="prose prose-invert my-6">${marked.parse(markdownContent)}</section>
                 </article>
+                <div class="text-center mt-4">
+                    <a href="/" class="back-link font-medium text-sm uppercase opacity-75 hover:opacity-100 hover:underline">← Back to all posts</a>
+                </div>
             </div>    
         `;
         contentElement.innerHTML = postHTML;
