@@ -8,25 +8,29 @@ export const config = {
         banner: "/public/banner.jpg",
         occupation: "VN-UK, The University of Danang",
         location: "Da Nang, Vietnam",
-        bio: "3rd-year CSE student, AML enjoyer, low-tier manga scanlator",
+        bio: "/public/description.md",
         social: [
             {
                 id: 1,
+                label: "GitHub",
                 url: "https://github.com/lunarpham",
                 icon: "fa-brands fa-github"
             },
             {
                 id: 2,
+                label: "Twitter/X",
                 url: "https://twitter.com/lunarruuna",
                 icon: "fa-brands fa-twitter"
             },
             {
                 id: 3,
+                label: "Facebook",
                 url: "https://facebook.com/lunarairisu",
                 icon: "fa-brands fa-facebook"
             },
             {
                 id: 4,
+                label: "Email",
                 url: "mailto:ruunapham@gmail.com",
                 icon: "fa-solid fa-envelope"
             }
@@ -40,8 +44,8 @@ export const config = {
         },
         {
             id: 2,
-            label: 'About',
-            redirectTo: '/about',
+            label: 'About me',
+            redirectTo: '/?page=about',
         }
     ]
 };

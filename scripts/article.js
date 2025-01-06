@@ -51,7 +51,7 @@ export function renderPostContent(title, datetime, markdownContent) {
 
         const postHTML = `
             <div class="container mx-auto px-4 lg:px-64">
-                <article class="post-detail mt-8 p-8 border bg-white">
+                <article class="post-detail mt-8">
                     <div class="flex flex-row gap-2 items-center mb-4">
                         <div>
                             <img src="${config.author.avatar}" alt="${config.author.nickname}" class="profile-image h-8 rounded-full bg-white">
@@ -63,7 +63,7 @@ export function renderPostContent(title, datetime, markdownContent) {
                     <h1 class="text-4xl font-bold">${title}</h1>
                     <section class="prose prose-invert my-6">${marked.parse(markdownContent)}</section>
                 </article>
-                <div class="text-center mt-4">
+                <div class="text-center mt-8 border-t border-black/25 p-4">
                     <a href="/" class="back-link font-medium text-sm uppercase opacity-75 hover:opacity-100 hover:underline">← Back to all posts</a>
                 </div>
             </div>    

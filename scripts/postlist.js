@@ -15,7 +15,7 @@ export function renderPostList(posts) {
     const postListHTML = posts.map(post => `
         <a href="?post=${post.file.replace('.md', '')}">
             <article class="post-summary mt-4 flex md:flex-row-reverse flex-col-reverse border border-black/0 bg-white hover:border-black/25">
-                <div class="md:basis-3/5 py-6 px-4">
+                <div class="lg:basis-3/5 md:basis-2/4 p-6">
                     <div class="flex flex-row gap-2 items-center mb-2">
                         <div class="basis-1/12">
                             <img src="${config.author.avatar}" alt="${config.author.nickname}" class="profile-image w-full rounded-full bg-white">
@@ -27,11 +27,11 @@ export function renderPostList(posts) {
                             </div>
                         </div>
                     </div>
-                    <h2 class="font-bold mb-1 text-lg">${post.title}</a></h2>
+                    <h2 class="font-bold mb-1 text-lg leading-snug">${post.title}</a></h2>
                     <p class="text-sm">${post.summary}</p>
                 </div>
-                <div class="md:basis-2/5 md:mr-4">
-                    <div class="w-full h-48 lg:h-48 bg-[url('${post.thumbnail}')] bg-cover"></div>  
+                <div class="lg:basis-2/5 md:basis-2/4">
+                    <div class="w-full min-h-52 lg:min-h-52 h-full bg-[url('${post.thumbnail}')] bg-cover bg-center"></div>  
                 </div>      
             </article>
         </a>

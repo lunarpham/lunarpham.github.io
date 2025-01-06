@@ -1,6 +1,7 @@
 import { renderHeader } from './scripts/header.js';
 import { renderFooter } from "./scripts/footer.js";
 import { websiteMapNav } from './scripts/navbar.js';
+import { renderAboutPage } from "./scripts/about.js";
 import { renderError } from './errorHandler.js';
 import { fetchPosts, renderPostList } from './scripts/postlist.js';
 import { fetchPostContent, renderPostContent } from './scripts/article.js';
@@ -18,9 +19,23 @@ export async function initBlog() {
 
         const urlParams = new URLSearchParams(window.location.search);
         const postFile = urlParams.get('post');
+        const page = urlParams.get('page');
+
+        if (page === 'about') {
+            renderAboutPage();
+            return;
+        }
 
         if (postFile) {
-            contentElement.innerHTML = '<p>Loading post...</p>';
+            contentElement.innerHTML = `
+                    <div class="container mx-auto lg:px-64">
+                        <div class="mt-8">
+                            <div class="text-center my-4">
+                                <p class="uppercase font-bold text-red-500">LOADING...</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
 
             try {
                 const { metadata, content } = await fetchPostContent(`${postFile}.md`);
