@@ -44,7 +44,7 @@ export async function renderAbout() {
                     <h2 class="font-bold text-xl text-center mt-0 md:text-start md:mt-3">${config.author.nickname}</h2>
                     <h3 class="font-medium text-lgz text-center md:text-start">(${config.author.name})</h3>
                     <h4 class="opacity-75 text-sm text-center md:text-start">${config.author.username}</h4>
-                    <div class="flex flex-col items-start justify-start lg:gap-6 mt-1 md:flex-row">
+                    <div class="flex flex-col items-start justify-start md:gap-6 mt-1 md:flex-row">
                         <div class="flex flex-row items-center gap-2 opacity-75">
                             <div class="md:basis-1/8">
                                 <i class="fa-solid fa-location-dot"></i>
