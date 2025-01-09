@@ -61,7 +61,7 @@ export function renderPostContent(title, datetime, markdownContent) {
                         </div>
                     </div>
                     <h1 class="text-4xl font-bold">${title}</h1>
-                    <section class="prose prose-invert my-6">${marked.parse(markdownContent)}</section>
+                    <section class="prose prose-invert my-6 text-sm">${marked.parse(markdownContent)}</section>
                 </article>
                 <div class="text-center mt-8 border-t border-black/25 p-4">
                     <a href="/" class="back-link font-medium text-sm uppercase opacity-75 hover:opacity-100 hover:underline">← Back to all posts</a>
