@@ -1,7 +1,7 @@
 `---
 title: "New ESRGAN model for grayscale manga upscaling"
 datetime: "2024-07-23"
-thumbnail: "https://i.imgur.com/hIfdgyn.png"
+thumbnail: "https://i.imgur.com/trFk7FQ.png"
 summary: "A customized ESRGAN model trained with my own dataset. It works perfectly for 1200px-height grayscale images."
 ---
 A customized ESRGAN model trained with my own dataset. It works perfectly for 1200px-height grayscale images.

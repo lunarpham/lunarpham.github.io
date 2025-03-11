@@ -110,6 +110,7 @@ export async function renderAboutPage() {
         if (page === 'about') {
             await renderAbout();
         }
+        
     } catch (error) {
         console.error('Error rendering about page:', error);
         renderError(document.getElementById('content'), {

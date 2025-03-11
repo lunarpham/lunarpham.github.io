@@ -1,7 +1,7 @@
 `---
 title: "How to download raw images from Bookwalker JP"
 datetime: "2023-03-29"
-thumbnail: "https://i.imgur.com/jll4YRC.jpeg"
+thumbnail: "https://i.imgur.com/tFIall8.png"
 summary: "An alternative way to download purchased raws from Bookwalker JP. Works all the time!"
 ---
 _(Please note that this is applied for **bookwalker.jp** only)_

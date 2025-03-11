@@ -11,15 +11,15 @@ export function websiteMapNav() {
                 <div class="hidden md:flex justify-between items-center">
                     <div class="flex gap-8 md:basis-4/12">
                         ${config.routes.map(route => `
-                            <a href="${route.redirectTo}" class="text-sm uppercase font-medium opacity-75 hover:opacity-100 hover:underline">${route.label}</a>
+                            <a href="${route.redirectTo}" class="font-medium hover:opacity-100 hover:underline">${route.label}</a>
                         `).join('')}
                     </div>
                     <div class="flex md:basis-4/12 justify-center">
-                        <a href="/" class="font-bold text-xl">LUNAR BLOG</a>
+                        <a href="/" class="font-medium text-3xl blog-logo">Lunar Blog</a>
                     </div>
                     <div class="flex md:basis-4/12 gap-6 justify-end">
                         ${config.author.social.map(socialLink => `
-                            <a href="${socialLink.url}" class="opacity-75 hover:opacity-100" target="_blank">
+                            <a href="${socialLink.url}" class="hover:opacity-100" target="_blank">
                                 <i class="${socialLink.icon}"></i>
                             </a>
                         `).join('')}
