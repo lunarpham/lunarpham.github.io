@@ -29,7 +29,7 @@ export function websiteMapNav() {
                 <!-- Mobile View -->
                 <div class="md:hidden">
                     <div class="flex justify-between items-center">
-                        <a href="/" class="font-bold text-xl">LUNAR BLOG</a>
+                        <a href="/" class="font-medium text-3xl blog-logo">Lunar Blog</a>
                         <button id="nav-toggle">
                             <i class="fa-solid fa-bars"></i>
                         </button>
