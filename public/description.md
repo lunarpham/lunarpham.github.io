@@ -11,5 +11,3 @@ Languages: English, Tiếng Việt, 日本語 (勉強しています！)
 \
 [ HOBBIES ]
 I enjoy hanging out with friends, reading manga and novels, and collecting audio equipment.
-\
-Oh, btw the cute girl in my pfp is Hana who is from my favorite manga, Hanashura.

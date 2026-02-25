@@ -1,10 +1,3 @@
-import { config } from '../config.js';
-
-export function renderHeader() {
-    const header = document.getElementById('header');
-    header.innerHTML = `
-        <div class="container mx-auto mt-2 sm:px-4 lg:px-64">
-            <div class="h-36 bg-[url('${config.author.banner}')] bg-cover bg-start md:bg-center md:rounded-md md:h-48"></div>
-        </div>            
-    `;
-}
+// Header is not used in the sidebar layout (Seikowo-style).
+// Kept as a no-op to avoid breaking imports.
+export function renderHeader() { }

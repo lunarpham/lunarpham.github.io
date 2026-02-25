@@ -28,13 +28,19 @@ const posts = fs.readdirSync(postsDir)
         const datetimeMatch = metadata.match(/datetime:\s*(.+)/);
         const thumbnailMatch = metadata.match(/thumbnail:\s*(.+)/);
         const summaryMatch = metadata.match(/summary:\s*(.+)/);
+        const categoriesMatch = metadata.match(/categories:\s*(.+)/);
+
+        const categories = categoriesMatch
+            ? cleanString(categoriesMatch[1]).split(',').map(c => c.trim())
+            : [];
 
         return {
             file: cleanString(file.replace('.md', '')),
             title: titleMatch ? cleanString(titleMatch[1]) : 'Untitled',
             datetime: datetimeMatch ? cleanString(datetimeMatch[1]) : 'Unknown Date',
-            thumbnail: thumbnailMatch ? cleanURL(thumbnailMatch[1]) : 'https://i.imgur.com/ereERid.png' ,
-            summary: summaryMatch ? cleanString(summaryMatch[1]) : 'No summary available.'
+            thumbnail: thumbnailMatch ? cleanURL(thumbnailMatch[1]) : 'https://i.imgur.com/ereERid.png',
+            summary: summaryMatch ? cleanString(summaryMatch[1]) : 'No summary available.',
+            categories: categories
         };
     });
 

@@ -1,16 +1,32 @@
 [
   {
+    "file": "2026-02-25-cosmic-princess-kaguya",
+    "title": "Cosmic Princess Kaguya! - Folklore meets modern creative culture",
+    "datetime": "2026-02-25",
+    "thumbnail": "https://cdn.imgchest.com/files/8fcea13576bd.jpg",
+    "summary": "Cosmic Princess Kaguya! (超かぐや姫！), the 2026 Netflix original from Studio Colorido and Studio Chromato directed by Shingo Yamashita",
+    "categories": [
+      "anime-review"
+    ]
+  },
+  {
     "file": "2024-07-23-new-esrgan-model-for-grayscale-manga-upscaling",
     "title": "New ESRGAN model for grayscale manga upscaling",
     "datetime": "2024-07-23",
     "thumbnail": "https://i.imgur.com/trFk7FQ.png",
-    "summary": "A customized ESRGAN model trained with my own dataset. It works perfectly for 1200px-height grayscale images."
+    "summary": "A customized ESRGAN model trained with my own dataset. It works perfectly for 1200px-height grayscale images.",
+    "categories": [
+      "technology"
+    ]
   },
   {
     "file": "2023-03-29-how-to-download-raw-images-on-bookwalker",
     "title": "How to download raw images from Bookwalker JP",
     "datetime": "2023-03-29",
     "thumbnail": "https://i.imgur.com/tFIall8.png",
-    "summary": "An alternative way to download purchased raws from Bookwalker JP. Works all the time!"
+    "summary": "An alternative way to download purchased raws from Bookwalker JP. Works all the time!",
+    "categories": [
+      "tutorial"
+    ]
   }
 ]

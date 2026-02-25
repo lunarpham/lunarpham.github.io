@@ -1,29 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lunar Blog</title>
-    <!-- External Libraries -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="description" content="Lunar Blog — Personal blog by Lunar Pham.">
     <script src="https://kit.fontawesome.com/e2653b8883.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js" type="module"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-    <!-- Custom Styles -->
     <link rel="stylesheet" href="global.css">
 </head>
-<body>
-    <div>
-        <nav id="navbar"></nav>
-        <header id="header"></header>
-        <main id="content"></main>
-        <footer id="footer"></footer>
-    </div>
 
-<script type="module">
-    import { initBlog } from './init.js';
-    document.addEventListener('DOMContentLoaded', initBlog);
-</script>
+<body>
+    <header class="site-header" id="site-header"></header>
+    <div class="app-layout" id="app" data-page="home">
+        <aside id="sidebar" class="sidebar"></aside>
+        <div class="main-area">
+            <div class="content-wrapper">
+                <main id="content"></main>
+                <aside id="sidebar-right" class="sidebar-right"></aside>
+            </div>
+            <footer class="site-footer" id="site-footer" style="display: none;"></footer>
+        </div>
+    </div>
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    <script type="module">
+        import { initBlog } from './init.js';
+        document.addEventListener('DOMContentLoaded', initBlog);
+    </script>
 </body>
+
 </html>
