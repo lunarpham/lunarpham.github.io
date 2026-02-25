@@ -4,7 +4,7 @@ import { config } from '../config.js';
 
 export async function fetchPostContent(file) {
     try {
-        const response = await fetch(`/posts/${file}`);
+        const response = await fetch(`./posts/${file}`);
         if (!response.ok) throw new Error(`Failed to load post: ${response.statusText}`);
         const markdown = await response.text();
         const parts = markdown.split('---');

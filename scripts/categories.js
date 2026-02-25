@@ -22,7 +22,7 @@ export function renderCategoriesSidebar(posts) {
     }
 
     const labelsHTML = config.categories.map(cat => `
-        <a href="/?label=${cat.slug}" class="label-item">
+        <a href="?label=${cat.slug}" class="label-item">
             <i class="fa-solid fa-tag"></i>
             <span class="label-name">${cat.label}</span>
             <span class="label-count">(${counts[cat.slug] || 0})</span>

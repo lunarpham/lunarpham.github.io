@@ -28,7 +28,7 @@ export function websiteMapNav() {
                 <button class="header-hamburger" id="header-hamburger" aria-label="Menu">
                     <i class="fa-solid fa-bars"></i>
                 </button>
-                <a href="/" class="header-brand-link">
+                <a href="./" class="header-brand-link">
                     <span class="header-brand">${config.title}</span>
                 </a>
             </div>
@@ -107,11 +107,11 @@ export function websiteMapNav() {
         </nav>
         <div class="sidebar-footer">
             <div class="sidebar-footer-links">
-                <a href="/">Sitemap</a>
+                <a href="./">Sitemap</a>
                 <span>·</span>
-                <a href="/">Disclaimer</a>
+                <a href="./">Disclaimer</a>
                 <span>·</span>
-                <a href="/">Privacy</a>
+                <a href="./">Privacy</a>
             </div>
             <div class="sidebar-footer-social">
                 ${config.author.social.map(link => `
@@ -142,11 +142,11 @@ export function websiteMapNav() {
 
     sidebar.querySelectorAll('.sidebar-nav-link').forEach(link => {
         const href = link.getAttribute('href');
-        if (currentLabel && href === `/?label=${currentLabel}`) {
+        if (currentLabel && href === `?label=${currentLabel}`) {
             link.classList.add('active');
-        } else if (currentPage === 'about' && href === '/?page=about') {
+        } else if (currentPage === 'about' && href === '?page=about') {
             link.classList.add('active');
-        } else if (!currentLabel && !currentPage && !currentPost && (href === '/' || href === '')) {
+        } else if (!currentLabel && !currentPage && !currentPost && (href === './' || href === '')) {
             link.classList.add('active');
         }
     });
@@ -187,11 +187,11 @@ export function websiteMapNav() {
                 `).join('')}
             </div>
             <div class="sidebar-footer-links" style="justify-content: center;">
-                <a href="/">Sitemap</a>
+                <a href="./">Sitemap</a>
                 <span>·</span>
-                <a href="/">Disclaimer</a>
+                <a href="./">Disclaimer</a>
                 <span>·</span>
-                <a href="/">Privacy</a>
+                <a href="./">Privacy</a>
             </div>
             <p style="font-size: 11px; color: var(--text-muted); margin-top: 12px;">© ${new Date().getFullYear()} ${config.title}. All rights reserved.</p>
         `;

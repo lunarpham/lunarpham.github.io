@@ -4,11 +4,11 @@ export const config = {
         name: "Duy Trưởng Phạm",
         nickname: "Lunar Pham",
         username: "@lunarpham",
-        avatar: "/public/avatar256.png",
-        banner: "/public/banner.jpg",
+        avatar: "./public/avatar256.png",
+        banner: "./public/banner.jpg",
         occupation: "VN-UK, The University of Danang",
         location: "Da Nang, Vietnam",
-        bio: "/public/description.md",
+        bio: "./public/description.md",
         social: [
             { id: 1, label: "GitHub", url: "https://github.com/lunarpham", icon: "fa-brands fa-github" },
             { id: 2, label: "Twitter/X", url: "https://twitter.com/lunarruuna", icon: "fa-brands fa-twitter" },
@@ -17,8 +17,8 @@ export const config = {
         ]
     },
     routes: [
-        { id: 1, label: 'Home', redirectTo: '/', icon: 'fa-solid fa-house' },
-        { id: 2, label: 'About me', redirectTo: '/?page=about', icon: 'fa-solid fa-user' }
+        { id: 1, label: 'Home', redirectTo: './', icon: 'fa-solid fa-house' },
+        { id: 2, label: 'About me', redirectTo: './?page=about', icon: 'fa-solid fa-user' }
     ],
     categories: [
         { slug: 'anime-review', label: 'Anime Review' },

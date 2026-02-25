@@ -8,10 +8,10 @@ function getCategoryLabel(slug) {
 
 // Get display labels as clickable links for a post's categories
 function getPostCategoryLinks(post) {
-    if (!post.categories || post.categories.length === 0) return '<a href="/">General</a>';
+    if (!post.categories || post.categories.length === 0) return '<a href="./">General</a>';
     return post.categories.map(slug => {
         const label = getCategoryLabel(slug);
-        return `<a href="/?label=${slug}" class="cat-link">${label}</a>`;
+        return `<a href="?label=${slug}" class="cat-link">${label}</a>`;
     }).join(', ');
 }
 
