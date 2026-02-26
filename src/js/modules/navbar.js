@@ -278,9 +278,9 @@ export function websiteMapNav() {
 
     sidebar.querySelectorAll('.sidebar-nav-link').forEach(link => {
         const href = link.getAttribute('href');
-        if (currentLabel && href === `?label=${currentLabel}`) {
+        if (currentLabel && href === `./?label=${currentLabel}`) {
             link.classList.add('active');
-        } else if (currentPage === 'about' && href === '?page=about') {
+        } else if (currentPage === 'about' && href === './?page=about') {
             link.classList.add('active');
         } else if (!currentLabel && !currentPage && !currentPost && (href === './' || href === '')) {
             link.classList.add('active');

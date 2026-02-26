@@ -70,7 +70,7 @@ export function renderPostList(posts, labelFilter = null, searchQuery = '') {
                     <a href="${postUrl}" class="post-card-title">${post.title}</a>
                     <p class="post-card-desc">${post.summary}</p>
                     <div class="post-card-bottom">
-                        <span class="badge badge-red">${t('published')}</span>
+                        <span class="badge badge-green">${t('published')}</span>
                         <span class="post-card-date">${post.datetime}</span>
                         <a href="${postUrl}" class="read-more-link">${t('readMore')}</a>
                     </div>
@@ -85,7 +85,7 @@ export function renderPostList(posts, labelFilter = null, searchQuery = '') {
         </div>
         <div id="mobile-labels" class="mobile-labels"></div>
         <div class="section-header">
-            <h2>${sectionTitle}</h2>
+            <h2 class="section-title">${sectionTitle}</h2>
             <div class="section-dots"><span></span><span></span><span></span><span></span></div>
         </div>
         <div class="posts-grid">

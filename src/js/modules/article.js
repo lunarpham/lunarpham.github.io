@@ -67,6 +67,11 @@ export function renderPostContent(title, datetime, markdownContent, categories =
                 </div>
                 <h1 class="article-title">${title}</h1>
                 <div class="article-content">${marked.parse(markdownContent)}</div>
+                <div class="back-to-posts-container">
+                    <a href="/" class="back-to-posts-btn">
+                        <i class="fa-solid fa-arrow-left"></i> ${t('backToPosts')}
+                    </a>
+                </div>
             </div>
         `;
         if (typeof hljs !== 'undefined') hljs.highlightAll();

@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="src/css/global.css">
 </head>
 
-<body>
+<body class="preload">
     <header class="site-header" id="site-header"></header>
     <div class="app-layout" id="app" data-page="home">
         <aside id="sidebar" class="sidebar"></aside>
@@ -33,7 +33,13 @@
     <div id="sidebar-overlay" class="sidebar-overlay"></div>
     <script type="module">
         import { initBlog } from './src/js/app/init.js';
-        document.addEventListener('DOMContentLoaded', initBlog);
+        document.addEventListener('DOMContentLoaded', () => {
+            initBlog();
+            // Remove preload class to enable transitions after initial render
+            setTimeout(() => {
+                document.body.classList.remove('preload');
+            }, 100);
+        });
     </script>
 </body>
 

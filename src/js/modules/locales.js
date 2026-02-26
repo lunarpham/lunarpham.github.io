@@ -44,6 +44,7 @@ export const locales = {
 
         // Error
         backToHome: "Back to Home",
+        backToPosts: "Back to all posts",
         errorOccurred: "An error occurred",
         failedToLoadAbout: "Failed to load about page",
 
@@ -99,6 +100,7 @@ export const locales = {
 
         // Error
         backToHome: "Về trang chủ",
+        backToPosts: "Quay lại tất cả bài viết",
         errorOccurred: "Đã xảy ra lỗi",
         failedToLoadAbout: "Không thể tải trang giới thiệu",
 
