@@ -1,0 +1,42 @@
+---
+title: "[Doujinshi] Kita - Guitar - Kizuita! (Bocchi The Rock!)"
+datetime: "2025-06-29"
+thumbnail: "https://cdn.imgchest.com/files/3fceb158199e.png"
+summary: "Doujin Oneshot về BoKita của tác giả KUMAI."
+categories: yuri-manga
+---
+![](https://files.catbox.moe/uskosr.png)
+![](https://files.catbox.moe/xjncq5.png)
+![](https://files.catbox.moe/y44izk.png)
+![](https://files.catbox.moe/0vrqxj.png)
+![](https://files.catbox.moe/ynvowh.png)
+![](https://files.catbox.moe/xg7z0d.png)
+![](https://files.catbox.moe/j52r8t.png)
+![](https://files.catbox.moe/5qi6c8.png)
+![](https://files.catbox.moe/155knw.png)
+![](https://files.catbox.moe/lyggxl.png)
+![](https://files.catbox.moe/1os7h9.png)
+![](https://files.catbox.moe/004n8x.png)
+![](https://files.catbox.moe/flf7ki.png)
+![](https://files.catbox.moe/s0ramn.png)
+![](https://files.catbox.moe/3lhs5g.png)
+![](https://files.catbox.moe/yxoc5f.png)
+![](https://files.catbox.moe/gld5wh.png)
+![](https://files.catbox.moe/ihavc5.png)
+![](https://files.catbox.moe/gg0dlx.png)
+![](https://files.catbox.moe/b0iiz0.png)
+![](https://files.catbox.moe/8apca6.png)
+![](https://files.catbox.moe/yegwb8.png)
+![](https://files.catbox.moe/r9gbl4.png)
+![](https://files.catbox.moe/usurdb.png)
+![](https://files.catbox.moe/o8k8ys.png)
+![](https://files.catbox.moe/gbh5jf.png)
+![](https://files.catbox.moe/eej1nn.png)
+![](https://files.catbox.moe/1sqky3.png)
+![](https://files.catbox.moe/3xrlru.png)
+![](https://files.catbox.moe/64nv4x.png)
+![](https://files.catbox.moe/9f5ax3.png)
+![](https://files.catbox.moe/ym67mm.png)
+![](https://files.catbox.moe/6e7v8x.png)
+![](https://files.catbox.moe/1ylicx.png)
+![](https://files.catbox.moe/imei1g.png)

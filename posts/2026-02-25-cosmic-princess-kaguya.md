@@ -5,6 +5,7 @@ thumbnail: "https://cdn.imgchest.com/files/8fcea13576bd.jpg"
 summary: "Cosmic Princess Kaguya! (超かぐや姫！), the 2026 Netflix original from Studio Colorido and Studio Chromato directed by Shingo Yamashita"
 categories: anime-review
 ---
+### **Disclaimer: This post is written by AI for displaying purpose and web demo only.**
 
 #### Cosmic Princess Kaguya! (超かぐや姫！), the 2026 Netflix original from Studio Colorido and Studio Chromato directed by Shingo Yamashita, takes the classic Japanese folktale The Tale of the Bamboo Cutter and sends it soaring into a bright, energetic future. Clocking in at roughly 142–143 minutes, this musical anime mixes virtual-reality streaming battles, dazzling idol performances, a warm friendship laced with gentle yuri undertones, and touching themes of fleeting connections and self-discovery.
 

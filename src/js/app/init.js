@@ -1,10 +1,25 @@
-import { websiteMapNav } from './scripts/navbar.js';
-import { renderAboutPage } from "./scripts/about.js";
+import { websiteMapNav } from '../modules/navbar.js';
+import { renderAboutPage } from "../modules/about.js";
+import { marked } from 'https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js';
 import { renderError } from './error.js';
-import { fetchPosts, renderPostList } from './scripts/postlist.js';
-import { fetchPostContent, renderPostContent } from './scripts/article.js';
-import { renderCategoriesSidebar } from './scripts/categories.js';
+import { fetchPosts, renderPostList } from '../modules/postlist.js';
+import { fetchPostContent, renderPostContent } from '../modules/article.js';
+import { renderCategoriesSidebar } from '../modules/categories.js';
 import { config } from './config.js';
+import { t, getLang } from '../modules/locales.js';
+
+async function fetchDescriptionHTML() {
+    try {
+        const lang = getLang();
+        const response = await fetch(`public/description.${lang}.md`);
+        if (!response.ok) return '';
+        marked.use({ breaks: true, gfm: true });
+        return marked.parse(await response.text());
+    } catch (e) {
+        console.error('Failed to fetch description:', e);
+        return '';
+    }
+}
 
 export async function initBlog() {
     try {
@@ -21,6 +36,11 @@ export async function initBlog() {
 
         websiteMapNav();
 
+        // Enable transitions after initial render to avoid flash of wrong theme
+        setTimeout(() => {
+            document.body.classList.add('theme-transition');
+        }, 50);
+
         const contentElement = document.getElementById('content');
         if (!contentElement) throw new Error('Content element not found');
 
@@ -28,6 +48,8 @@ export async function initBlog() {
             await renderAboutPage();
             return;
         }
+
+        const descriptionHTML = await fetchDescriptionHTML();
 
         const posts = await fetchPosts();
         if (!Array.isArray(posts)) throw new Error('Invalid posts data');
@@ -82,15 +104,14 @@ export async function initBlog() {
 
             dropdown?.classList.add('active');
 
-            let html = `<div class="search-header-info">Kết quả cho: <span>${query}</span></div>`;
+            let html = `<div class="search-header-info">${t('resultsFor')} <span>${query}</span></div>`;
 
             if (filtered.length > 0) {
                 html += filtered.map((post, idx) => {
                     const postUrl = `?post=${post.file.replace('.md', '')}`;
                     const cats = (post.categories || []).map(slug => {
-                        const c = config.categories.find(cc => cc.slug === slug);
-                        return c ? c.label : slug;
-                    }).join(' / ');
+                        return t(slug) || slug;
+                    }).join(', ');
 
                     return `
                         <a href="${postUrl}" class="search-result-item" data-index="${idx}">
@@ -99,13 +120,13 @@ export async function initBlog() {
                             </div>
                             <div class="search-result-info">
                                 <span class="search-result-title">${highlightMatch(post.title, query)}</span>
-                                <div class="search-result-meta">in <span>${cats || 'General'}</span></div>
+                                <div class="search-result-meta">${t('in')} <span>${cats || t('general')}</span></div>
                             </div>
                         </a>
                     `;
                 }).join('');
             } else {
-                html += `<div class="search-header-info">Không tìm thấy kết quả nào</div>`;
+                html += `<div class="search-header-info">${t('noResults')}</div>`;
             }
 
             if (resultsContainer) resultsContainer.innerHTML = html;
@@ -201,19 +222,93 @@ export async function initBlog() {
         }
 
         if (postFile) {
-            contentElement.innerHTML = '<div class="loading-container"><div class="loading-spinner"></div><p class="loading-text">Loading article...</p></div>';
+            contentElement.innerHTML = `<div class="loading-container"><div class="loading-spinner"></div><p class="loading-text">${t('loading')}</p></div>`;
             try {
                 const { metadata, content } = await fetchPostContent(`${postFile}.md`);
                 if (!metadata?.title || !content) throw new Error('Invalid post data');
-                renderPostContent(metadata.title, metadata.datetime, content, posts.find(p => p.file === postFile || p.file === `${postFile}.md`)?.categories || []);
-                renderCategoriesSidebar(posts);
+                const matchingPost = posts.find(p => p.file === postFile || p.file === `${postFile}.md`);
+                renderPostContent(metadata.title, metadata.datetime, content, matchingPost?.categories || [], matchingPost);
+                renderCategoriesSidebar(posts, descriptionHTML);
             } catch (err) {
                 console.error('Error loading post:', err);
-                renderError(contentElement, { message: 'Post not found' });
+                renderError(contentElement, { message: t('postNotFound') });
             }
         } else {
             renderPostList(posts, label);
-            renderCategoriesSidebar(posts);
+            renderCategoriesSidebar(posts, descriptionHTML);
+        }
+
+        // --- Scroll Button with Progress ---
+        const scrollBtnHTML = `
+            <button id="scroll-to-top" class="scroll-to-top" aria-label="Scroll page">
+                <svg class="progress-circle" width="100%" height="100%" viewBox="-1 -1 102 102">
+                    <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+                </svg>
+                <i class="fa-solid fa-chevron-down" id="scroll-icon" style="transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);"></i>
+            </button>
+        `;
+
+        if (!document.getElementById('scroll-to-top')) {
+            document.body.insertAdjacentHTML('beforeend', scrollBtnHTML);
+        }
+
+        const scrollBtn = document.getElementById('scroll-to-top');
+        const scrollIcon = document.getElementById('scroll-icon');
+        const progressPath = scrollBtn?.querySelector('path');
+
+        if (progressPath) {
+            const pathLength = progressPath.getTotalLength();
+            progressPath.style.transition = 'none';
+            progressPath.style.strokeDasharray = `${pathLength} ${pathLength}`;
+            progressPath.style.strokeDashoffset = pathLength;
+            progressPath.getBoundingClientRect(); // trigger layout
+            progressPath.style.transition = 'stroke-dashoffset 10ms linear';
+
+            let isAtTop = true;
+
+            const updateProgress = () => {
+                const scroll = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+                // Show button always, but flip icon
+                if (scroll > 100) {
+                    if (isAtTop) {
+                        isAtTop = false;
+                        scrollIcon.style.transform = 'rotate(180deg)';
+                        scrollIcon.style.marginTop = '-2px';
+                    }
+                } else {
+                    if (!isAtTop) {
+                        isAtTop = true;
+                        scrollIcon.style.transform = 'rotate(0deg)';
+                        scrollIcon.style.marginTop = '0';
+                    }
+                }
+
+                // Show button immediately so they can click down
+                scrollBtn.classList.add('visible');
+
+                // Calculate progress
+                if (docHeight > 0) {
+                    const progress = scroll / docHeight;
+                    progressPath.style.strokeDashoffset = pathLength - (progress * pathLength);
+                }
+            };
+
+            window.addEventListener('scroll', updateProgress, { passive: true });
+
+            // Allow layout to settle before initial check
+            setTimeout(updateProgress, 100);
+
+            scrollBtn?.addEventListener('click', () => {
+                if (isAtTop) {
+                    // Scroll to bottom
+                    window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
+                } else {
+                    // Scroll to top
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            });
         }
 
         if (contentElement.querySelector('pre code') && typeof hljs !== 'undefined') {

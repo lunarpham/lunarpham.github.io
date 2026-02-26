@@ -1,6 +1,7 @@
 import { marked } from 'https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js';
-import { renderError } from '../error.js';
-import { config } from "../config.js";
+import { renderError } from '../app/error.js';
+import { config } from "../app/config.js";
+import { t, getLang } from './locales.js';
 
 async function fetchBioContent(path) {
     const response = await fetch(path);
@@ -17,7 +18,9 @@ export async function renderAboutPage() {
     const { author } = config;
 
     try {
-        const bioContent = await fetchBioContent(author.bio);
+        const lang = getLang();
+        const bioPath = author.bio.replace('.md', `.${lang}.md`);
+        const bioContent = await fetchBioContent(bioPath);
         contentElement.innerHTML = `
             <div class="about-container">
                 <div class="about-profile">
@@ -34,9 +37,9 @@ export async function renderAboutPage() {
                         </div>
                     </div>
                 </div>
-                <p class="about-section-label">Introduction</p>
+                <p class="about-section-label">${t('introduction')}</p>
                 <div class="about-bio">${bioContent}</div>
-                <p class="about-section-label">Where to find</p>
+                <p class="about-section-label">${t('whereToFind')}</p>
                 <div class="about-social-list">
                     ${author.social.map(link => `
                         <a href="${link.url}" target="_blank" rel="noopener noreferrer" class="about-social-btn">
@@ -48,6 +51,6 @@ export async function renderAboutPage() {
         `;
     } catch (error) {
         console.error('Error rendering about:', error);
-        renderError(contentElement, { message: 'Failed to load about page' });
+        renderError(contentElement, { message: t('failedToLoadAbout') });
     }
 }

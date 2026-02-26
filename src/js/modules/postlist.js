@@ -1,14 +1,15 @@
-import { config } from '../config.js';
+import { config } from '../app/config.js';
+import { t } from './locales.js';
+import { isBookmarked, toggleBookmark } from './bookmarks.js';
 
 // Resolve category slug to its label from config
 function getCategoryLabel(slug) {
-    const cat = config.categories.find(c => c.slug === slug);
-    return cat ? cat.label : slug;
+    return t(slug) || slug;
 }
 
 // Get display labels as clickable links for a post's categories
 function getPostCategoryLinks(post) {
-    if (!post.categories || post.categories.length === 0) return '<a href="./">General</a>';
+    if (!post.categories || post.categories.length === 0) return `<a href="./">${t('general')}</a>`;
     return post.categories.map(slug => {
         const label = getCategoryLabel(slug);
         return `<a href="?label=${slug}" class="cat-link">${label}</a>`;
@@ -31,14 +32,14 @@ export function renderPostList(posts, labelFilter = null, searchQuery = '') {
 
     // Filter by label if provided
     let filtered = posts;
-    let sectionTitle = 'Bài đăng mới nhất';
+    let sectionTitle = t('latestPosts');
 
     if (labelFilter) {
         filtered = posts.filter(p =>
             p.categories && p.categories.includes(labelFilter)
         );
         const catLabel = getCategoryLabel(labelFilter);
-        sectionTitle = `Label: ${catLabel}`;
+        sectionTitle = `${t('labelFilter')}${catLabel}`;
     }
 
     if (searchQuery) {
@@ -47,31 +48,36 @@ export function renderPostList(posts, labelFilter = null, searchQuery = '') {
             p.title.toLowerCase().includes(query) ||
             p.summary.toLowerCase().includes(query)
         );
-        sectionTitle = `Results for: "${searchQuery}"`;
+        sectionTitle = `${t('resultsFor')} "${searchQuery}"`;
     }
 
     const cardsHTML = filtered.length > 0
         ? filtered.map((post, i) => {
             const postUrl = `?post=${post.file.replace('.md', '')}`;
+            const isSaved = isBookmarked(post.file);
+            const bookmarkIcon = isSaved ? 'fa-solid fa-bookmark' : 'fa-regular fa-bookmark';
+
             return `
             <div class="post-card fade-in">
                 <a href="${postUrl}" class="post-card-img">
                     <img src="${post.thumbnail}" alt="${post.title}" loading="lazy">
-                    <span class="bookmark"><i class="fa-regular fa-bookmark"></i></span>
                 </a>
+                <button class="bookmark-btn ${isSaved ? 'active' : ''}" data-id="${post.file}" data-title="${post.title}" data-url="${postUrl}" data-thumbnail="${post.thumbnail}" data-category="${getCategoryLabel(post.categories?.[0] || 'general')}" aria-label="Bookmark">
+                    <i class="${bookmarkIcon}"></i>
+                </button>
                 <div class="post-card-info">
-                    <div class="post-card-cat">in ${getPostCategoryLinks(post)}</div>
+                    <div class="post-card-cat">${t('in')} ${getPostCategoryLinks(post)}</div>
                     <a href="${postUrl}" class="post-card-title">${post.title}</a>
                     <p class="post-card-desc">${post.summary}</p>
                     <div class="post-card-bottom">
-                        <span class="badge badge-red">Published</span>
+                        <span class="badge badge-red">${t('published')}</span>
                         <span class="post-card-date">${post.datetime}</span>
-                        <a href="${postUrl}" class="read-more-link">Đọc thêm</a>
+                        <a href="${postUrl}" class="read-more-link">${t('readMore')}</a>
                     </div>
                 </div>
             </div>`;
         }).join('')
-        : `<p class="empty-state">No posts found.</p>`;
+        : `<p class="empty-state">${t('noPostsFound')}</p>`;
 
     contentElement.innerHTML = `
         <div id="mobile-banner" class="mobile-banner">
@@ -86,4 +92,28 @@ export function renderPostList(posts, labelFilter = null, searchQuery = '') {
             ${cardsHTML}
         </div>
     `;
+
+    // Add event listeners for bookmark buttons
+    contentElement.querySelectorAll('.bookmark-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const postData = {
+                id: btn.getAttribute('data-id'),
+                title: btn.getAttribute('data-title'),
+                url: btn.getAttribute('data-url'),
+                thumbnail: btn.getAttribute('data-thumbnail'),
+                categoryLabel: btn.getAttribute('data-category')
+            };
+            toggleBookmark(postData);
+
+            // Toggle icon locally for instant feedback
+            const isSaved = btn.classList.toggle('active');
+            const icon = btn.querySelector('i');
+            if (isSaved) {
+                icon.className = 'fa-solid fa-bookmark';
+            } else {
+                icon.className = 'fa-regular fa-bookmark';
+            }
+        });
+    });
 }

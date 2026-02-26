@@ -1,8 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const postsDir = './posts';
-const output = './public/posts.json';
+const postsDir = path.join(__dirname, '..', 'posts');
+const output = path.join(__dirname, '..', 'public', 'posts.json');
 
 // Function to clean strings of quotes and slashes
 function cleanString(str) {

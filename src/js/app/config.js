@@ -8,7 +8,7 @@ export const config = {
         banner: "./public/banner.jpg",
         occupation: "VN-UK, The University of Danang",
         location: "Da Nang, Vietnam",
-        bio: "./public/description.md",
+        bio: "./public/aboutme.md",
         social: [
             { id: 1, label: "GitHub", url: "https://github.com/lunarpham", icon: "fa-brands fa-github" },
             { id: 2, label: "Twitter/X", url: "https://twitter.com/lunarruuna", icon: "fa-brands fa-twitter" },
@@ -21,9 +21,9 @@ export const config = {
         { id: 2, label: 'About me', redirectTo: './?page=about', icon: 'fa-solid fa-user' }
     ],
     categories: [
-        { slug: 'anime-review', label: 'Anime Review' },
-        { slug: 'yuri-manga', label: 'Yuri Manga' },
-        { slug: 'technology', label: 'Technology' },
-        { slug: 'tutorial', label: 'Tutorial' }
+        { slug: 'anime-review' },
+        { slug: 'yuri-manga' },
+        { slug: 'technology' },
+        { slug: 'tutorial' }
     ]
 };
