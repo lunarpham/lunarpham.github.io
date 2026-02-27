@@ -59,22 +59,26 @@ export async function initBlog() {
 
         let loadingHTML = `<div class="loading-container"><div class="loading-spinner"></div><p class="loading-text">${t('loading')}</p></div>`;
 
-        if (!postFile && page !== 'about') {
-            let sectionTitle = t('latestPosts');
-            if (label) {
-                sectionTitle = `${t('labelFilter')}${t(label) || label}`;
-            }
-            loadingHTML = `
+        if (page !== 'about') {
+            let prefixHTML = `
                 <div id="mobile-banner" class="mobile-banner">
                     <img src="${config.author.banner}" alt="Banner">
                 </div>
                 <div id="mobile-labels" class="mobile-labels"></div>
+            `;
+            if (!postFile) {
+                let sectionTitle = t('latestPosts');
+                if (label) {
+                    sectionTitle = `${t('labelFilter')}${t(label) || label}`;
+                }
+                prefixHTML += `
                 <div class="section-header">
                     <h2 class="section-title">${sectionTitle}</h2>
                     <div class="section-dots"><span></span><span></span><span></span><span></span></div>
                 </div>
-                ${loadingHTML}
-            `;
+                `;
+            }
+            loadingHTML = prefixHTML + loadingHTML;
         }
 
         contentElement.innerHTML = loadingHTML;
@@ -103,6 +107,9 @@ export async function initBlog() {
                 await delayPromise;
 
                 renderPostContent(metadata.title, metadata.datetime, content, matchingPost?.categories || [], matchingPost);
+
+                // Re-populate mobile labels, which were overwritten
+                renderCategoriesSidebar(posts, descriptionHTML);
             } catch (err) {
                 console.error('Error loading post:', err);
                 await delayPromise;
@@ -115,6 +122,9 @@ export async function initBlog() {
             await delayPromise;
 
             renderPostList(posts, label);
+
+            // Re-populate mobile labels, which were overwritten
+            renderCategoriesSidebar(posts, descriptionHTML);
         }
 
         // --- Scroll Button with Progress ---

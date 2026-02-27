@@ -1,5 +1,5 @@
 ---
-title: "Adachi and Shimamura - Taste of a love yet slowly to bloom"
+title: "Adachi and Shimamura - Taste of a love that slowly blooms"
 datetime: "2025-02-14"
 thumbnail: "https://cdn.imgchest.com/files/aaa47057d433.jpg"
 summary: "A short review of Adachi and Shimamura."

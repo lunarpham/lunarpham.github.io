@@ -55,6 +55,10 @@ export function renderPostContent(title, datetime, markdownContent, categories =
         }
 
         contentElement.innerHTML = `
+            <div id="mobile-banner" class="mobile-banner">
+                <img src="${config.author.banner}" alt="Banner">
+            </div>
+            <div id="mobile-labels" class="mobile-labels"></div>
             <div class="article-container">
                 <nav class="breadcrumb" aria-label="Breadcrumb">${breadcrumbHTML}</nav>
                 <div class="article-meta" style="display: flex; align-items: center;">
