@@ -1,6 +1,6 @@
 ---
 title: "Adachi and Shimamura - Taste of a love that slowly blooms"
-datetime: "2025-02-14"
+datetime: "2026-02-28"
 thumbnail: "https://cdn.imgchest.com/files/aaa47057d433.jpg"
 summary: "A short review of Adachi and Shimamura."
 categories: yuri-manga

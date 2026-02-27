@@ -30,10 +30,14 @@ export async function initBlog() {
         const postFile = urlParams.get('post');
         const page = urlParams.get('page');
         const label = urlParams.get('label');
+        const searchQuery = urlParams.get('search');
+        const currentPage = parseInt(urlParams.get('p')) || 1;
 
         // Set page type for CSS layout control
         if (postFile) app.setAttribute('data-page', 'post');
         else if (page === 'about') app.setAttribute('data-page', 'about');
+        else if (searchQuery) app.setAttribute('data-page', 'search');
+        else if (label) app.setAttribute('data-page', 'label');
         else app.setAttribute('data-page', 'home');
 
         websiteMapNav();
@@ -48,12 +52,24 @@ export async function initBlog() {
 
         const delayPromise = new Promise(resolve => setTimeout(resolve, 500));
 
+        // Fetch posts early so search works on all pages
+        const [descriptionHTML, posts] = await Promise.all([
+            fetchDescriptionHTML(),
+            fetchPosts(),
+        ]);
+
+        if (!Array.isArray(posts)) throw new Error('Invalid posts data');
+
+        // Init search on all pages
+        initSearch(posts, app);
+
         if (page === 'about') {
             contentElement.innerHTML = `<div class="loading-container"><div class="loading-spinner"></div><p class="loading-text">${t('loading')}</p></div>`;
             await Promise.all([
                 renderAboutPage(),
                 delayPromise
             ]);
+            initScrollToTop();
             return;
         }
 
@@ -66,14 +82,10 @@ export async function initBlog() {
                 </div>
                 <div id="mobile-labels" class="mobile-labels"></div>
             `;
-            if (!postFile) {
-                let sectionTitle = t('latestPosts');
-                if (label) {
-                    sectionTitle = `${t('labelFilter')}${t(label) || label}`;
-                }
+            if (!postFile && !label && !searchQuery) {
                 prefixHTML += `
                 <div class="section-header">
-                    <h2 class="section-title">${sectionTitle}</h2>
+                    <h2 class="section-title">${t('latestPosts')}</h2>
                     <div class="section-dots"><span></span><span></span><span></span><span></span></div>
                 </div>
                 `;
@@ -82,16 +94,6 @@ export async function initBlog() {
         }
 
         contentElement.innerHTML = loadingHTML;
-
-        const [descriptionHTML, posts] = await Promise.all([
-            fetchDescriptionHTML(),
-            fetchPosts(),
-        ]);
-
-        if (!Array.isArray(posts)) throw new Error('Invalid posts data');
-
-        // --- Smart Search Logic ---
-        initSearch(posts, app);
 
 
         if (postFile) {
@@ -121,7 +123,7 @@ export async function initBlog() {
 
             await delayPromise;
 
-            renderPostList(posts, label);
+            renderPostList(posts, label, searchQuery || '', currentPage);
 
             // Re-populate mobile labels, which were overwritten
             renderCategoriesSidebar(posts, descriptionHTML);

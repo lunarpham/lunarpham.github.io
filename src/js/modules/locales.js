@@ -53,7 +53,15 @@ export const locales = {
         noBookmarks: "No bookmarks yet.",
         removeBookmark: "Remove bookmark",
         addedBookmark: "Added to bookmarks",
-        removedBookmark: "Removed from bookmarks"
+        removedBookmark: "Removed from bookmarks",
+        bookmarkLimitReached: "Bookmark limit reached (10 max)",
+        shareWith: "Share with other apps",
+        orCopyLink: "or copy link",
+
+        // Search & Pagination
+        showMoreResults: "Show more results",
+        previous: "Previous",
+        next: "Next"
     },
     vi: {
         // Navbar & Layout
@@ -109,7 +117,15 @@ export const locales = {
         noBookmarks: "Chưa có bài viết nào.",
         removeBookmark: "Bỏ lưu",
         addedBookmark: "Đã thêm vào mục lưu",
-        removedBookmark: "Đã xóa khỏi mục lưu"
+        removedBookmark: "Đã xóa khỏi mục lưu",
+        bookmarkLimitReached: "Đã đạt giới hạn lưu (tối đa 10)",
+        shareWith: "Chia sẻ với ứng dụng khác",
+        orCopyLink: "hoặc sao chép liên kết",
+
+        // Search & Pagination
+        showMoreResults: "Xem thêm kết quả",
+        previous: "Trước",
+        next: "Tiếp"
     }
 };
 

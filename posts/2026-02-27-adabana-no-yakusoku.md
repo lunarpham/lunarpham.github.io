@@ -1,6 +1,6 @@
 ---
 title: "[Oneshot] Adabana no Yakusoku"
-datetime: "2025-12-09"
+datetime: "2026-02-27"
 thumbnail: "https://cdn.imgchest.com/files/57c12bdf77c9.jpg"
 summary: "Gái mental issue bú mỏ nhau thôi"
 categories: yuri-manga

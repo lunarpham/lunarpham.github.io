@@ -1,6 +1,6 @@
 ---
 title: "[Doujinshi] Kita - Guitar - Kizuita! (Bocchi The Rock!)"
-datetime: "2025-06-29"
+datetime: "2026-02-27"
 thumbnail: "https://cdn.imgchest.com/files/3fceb158199e.png"
 summary: "Doujin Oneshot về BoKita của tác giả KUMAI."
 categories: yuri-manga

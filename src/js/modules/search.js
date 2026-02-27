@@ -6,46 +6,49 @@ export function initSearch(posts, app) {
         const words = query.toLowerCase().split(/\s+/).filter(w => w.length > 0);
         let highlighted = text;
         words.forEach(word => {
-            const regex = new RegExp(`(${word})`, 'gi');
+            const regex = new RegExp(`(${word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
             highlighted = highlighted.replace(regex, '<mark>$1</mark>');
         });
         return highlighted;
     };
 
-    const handleSearch = (query, resultsContainer, dropdown) => {
-        if (!query.trim()) {
-            dropdown?.classList.remove('active');
-            if (resultsContainer) resultsContainer.innerHTML = '';
-            return;
-        }
-
+    const searchAndScore = (query) => {
         const searchWords = query.toLowerCase().split(/\s+/).filter(w => w.length > 0);
 
-        const filtered = posts.map(post => {
+        return posts.map(post => {
             let score = 0;
             const titleLower = post.title.toLowerCase();
             const summaryLower = post.summary.toLowerCase();
 
-            // Check if all words match somewhere
             const allWordsMatch = searchWords.every(word =>
                 titleLower.includes(word) || summaryLower.includes(word)
             );
 
             if (!allWordsMatch) return null;
 
-            // Simple scoring: matches in title are worth more
             searchWords.forEach(word => {
                 if (titleLower.includes(word)) score += 10;
                 if (summaryLower.includes(word)) score += 2;
-                // Exact start of title is bonus
                 if (titleLower.startsWith(word)) score += 5;
             });
 
             return { ...post, score };
         })
             .filter(p => p !== null)
-            .sort((a, b) => b.score - a.score)
-            .slice(0, 8);
+            .sort((a, b) => b.score - a.score);
+    };
+
+    const DROPDOWN_LIMIT = 5;
+
+    const handleSearch = (query, resultsContainer, dropdown, isMobile = false) => {
+        if (!query.trim()) {
+            dropdown?.classList.remove('active');
+            if (resultsContainer) resultsContainer.innerHTML = '';
+            return;
+        }
+
+        const allResults = searchAndScore(query);
+        const filtered = allResults.slice(0, DROPDOWN_LIMIT);
 
         dropdown?.classList.add('active');
 
@@ -70,6 +73,12 @@ export function initSearch(posts, app) {
                     </a>
                 `;
             }).join('');
+
+            // "Show more results" link
+            if (allResults.length > DROPDOWN_LIMIT) {
+                const searchUrl = `?search=${encodeURIComponent(query)}`;
+                html += `<a href="${searchUrl}" class="search-show-more">${t('showMoreResults')} (${allResults.length})<i class="fa-solid fa-arrow-right"></i></a>`;
+            }
         } else {
             html += `<div class="search-header-info">${t('noResults')}</div>`;
         }
@@ -82,20 +91,24 @@ export function initSearch(posts, app) {
 
         input.addEventListener('keydown', (e) => {
             const items = container.querySelectorAll('.search-result-item');
-            if (!items.length) return;
 
             if (e.key === 'ArrowDown') {
                 e.preventDefault();
+                if (!items.length) return;
                 selectedIndex = Math.min(selectedIndex + 1, items.length - 1);
                 updateSelection(items);
             } else if (e.key === 'ArrowUp') {
                 e.preventDefault();
+                if (!items.length) return;
                 selectedIndex = Math.max(selectedIndex - 1, 0);
                 updateSelection(items);
             } else if (e.key === 'Enter') {
-                if (selectedIndex >= 0) {
-                    e.preventDefault();
+                e.preventDefault();
+                if (selectedIndex >= 0 && items[selectedIndex]) {
                     items[selectedIndex].click();
+                } else if (input.value.trim()) {
+                    // Navigate to search results page
+                    window.location.href = `?search=${encodeURIComponent(input.value.trim())}`;
                 }
             } else if (e.key === 'Escape') {
                 dropdown?.classList.remove('active');
@@ -104,7 +117,7 @@ export function initSearch(posts, app) {
         });
 
         input.addEventListener('input', () => {
-            selectedIndex = -1; // Reset selection on new input
+            selectedIndex = -1;
         });
 
         function updateSelection(items) {
@@ -126,14 +139,17 @@ export function initSearch(posts, app) {
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
             const val = e.target.value;
-            handleSearch(val, searchDropdown, searchDropdown);
-            if (searchClearBtn) searchClearBtn.style.display = val ? 'block' : 'none';
+            handleSearch(val, searchDropdown, searchDropdown, false);
+            if (searchClearBtn) {
+                if (val) searchClearBtn.classList.add('visible');
+                else searchClearBtn.classList.remove('visible');
+            }
         });
 
         searchClearBtn?.addEventListener('click', () => {
             searchInput.value = '';
-            handleSearch('', searchDropdown, searchDropdown);
-            searchClearBtn.style.display = 'none';
+            handleSearch('', searchDropdown, searchDropdown, false);
+            searchClearBtn.classList.remove('visible');
             searchInput.focus();
         });
 
@@ -159,7 +175,7 @@ export function initSearch(posts, app) {
     const mobileSearchResults = document.getElementById('mobile-search-results');
     if (mobileSearchInput) {
         mobileSearchInput.addEventListener('input', (e) => {
-            handleSearch(e.target.value, mobileSearchResults, null);
+            handleSearch(e.target.value, mobileSearchResults, null, true);
         });
         setupKeyboardNav(mobileSearchInput, mobileSearchResults, null);
     }

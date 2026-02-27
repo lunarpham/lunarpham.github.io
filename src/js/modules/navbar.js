@@ -41,7 +41,7 @@ export function websiteMapNav() {
                 <div class="header-search desktop-only">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <input type="text" placeholder="${t('searchPlaceholder')}" id="search-input" autocomplete="off">
-                    <button class="search-clear-btn" id="search-clear-btn" style="display: none;">
+                    <button class="search-clear-btn" id="search-clear-btn">
                         <i class="fa-solid fa-xmark"></i>
                     </button>
                     <div id="search-dropdown" class="search-dropdown"></div>
@@ -322,12 +322,6 @@ export function websiteMapNav() {
                     </a>
                 `).join('')}
             </div>
-            <div class="sidebar-footer-links" style="justify-content: center;">
-                <a href="./">${t('sitemap')}</a>
-                <span>·</span>
-                <a href="./">${t('disclaimer')}</a>
-            </div>
-            <p style="font-size: 11px; color: var(--text-muted); margin-top: 12px; margin-bottom: 4px;">© ${new Date().getFullYear()} ${config.title}. ${t('allRightsReserved')}</p>
             <p style="font-size: 11px; color: var(--text-muted);">${t('themeDisclaimer')}</p>
         `;
     }
