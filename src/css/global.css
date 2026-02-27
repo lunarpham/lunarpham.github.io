@@ -52,6 +52,7 @@
 html {
     scroll-behavior: smooth;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 body {
@@ -1224,7 +1225,8 @@ button {
 .article-container {
     max-width: 780px;
     margin: 0 auto;
-    padding: 8px 0 40px
+    padding: 8px 0 40px;
+    overflow: hidden;
 }
 
 .breadcrumb {
@@ -1257,7 +1259,7 @@ button {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    max-width: 400px
+    max-width: min(400px, 80vw);
 }
 
 .article-meta {
@@ -1291,13 +1293,17 @@ button {
     line-height: 1.2;
     letter-spacing: -.5px;
     margin-bottom: 28px;
-    color: var(--text)
+    color: var(--text);
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 .article-content {
     color: var(--text-secondary);
     line-height: 1.8;
-    font-size: 15px
+    font-size: 15px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 .article-content h2 {
